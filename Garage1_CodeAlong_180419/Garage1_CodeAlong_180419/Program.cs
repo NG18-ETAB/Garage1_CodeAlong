@@ -10,7 +10,6 @@ namespace Garage1_CodeAlong_180419
     {
         static void Main(string[] args)
         {
-            //HORSE UP
         }
     }
 }
