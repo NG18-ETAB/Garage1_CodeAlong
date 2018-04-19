@@ -10,6 +10,9 @@ namespace Garage1_CodeAlong_180419
     {
         static void Main(string[] args)
         {
+            UI ui = new UI();
+
+                ui.MainMenu();
         }
     }
 }
