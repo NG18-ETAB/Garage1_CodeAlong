@@ -39,10 +39,53 @@ namespace Garage1_CodeAlong_180419
                 internalCollection[_count++] = vehicle;
             }
         }
+        
+        public T UnPark(string regNr)
+        {
+            T output = null;
+            int slotToRemove = -1;
+            for(int i = 0; i < _count;i++)
+            {
+                if(internalCollection[i].RegNr == regNr)
+                {
+                    output = internalCollection[i];
+                    slotToRemove = i;
+                    break;
+                }
+            }
+
+            if(slotToRemove < 0)
+            {
+                return null;
+            }
+
+            for(int i = slotToRemove; i < _capacity; i++)
+            {
+                if(internalCollection[i] == null)
+                {
+                    break;
+                }
+                if (i + 1 != _capacity)
+                {
+                    internalCollection[i] = internalCollection[i + 1];
+                }
+                else
+                {
+                    internalCollection[i] = null;
+                    break;
+                }
+            }
+
+            _count--;
+            return output;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for(int i =0; i<_count;i++)
+            {
+                yield return internalCollection[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
