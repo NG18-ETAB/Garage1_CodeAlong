@@ -10,5 +10,10 @@
             CylinderCapacity = cylinderCapacity;
             IsTrike = isTrike;
         }
+
+        public override string Print()
+        {
+            return $"The Motorcycle of {base.Print()}, motor is a {CylinderCapacity} cc and is {(IsTrike ? "not " : "")}a trike";
+        }
     }
 }

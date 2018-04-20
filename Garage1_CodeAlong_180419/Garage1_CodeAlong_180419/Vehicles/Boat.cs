@@ -10,5 +10,10 @@
             LengthInFeet = lengthInFeet;
             IsSailBoat = isSailBoat;
         }
+
+        public override string Print()
+        {
+            return $"The Boat of {base.Print()}, is {LengthInFeet} feet long and is {(IsSailBoat?"not ":"")}a sail boat";
+        }
     }
 }

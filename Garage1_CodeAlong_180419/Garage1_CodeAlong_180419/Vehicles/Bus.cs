@@ -10,5 +10,10 @@
             IsDoubleDecker = isDoubleDecker;
             NrOfSeats = nrOfSeats;
         }
+
+        public override string Print()
+        {
+            return $"The Bus of {base.Print()}, is {(IsDoubleDecker ? "not ":"")}a double decker and has {NrOfSeats} seats";
+        }
     }
 }

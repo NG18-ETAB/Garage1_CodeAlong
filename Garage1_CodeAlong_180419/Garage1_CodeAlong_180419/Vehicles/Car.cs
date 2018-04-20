@@ -10,5 +10,10 @@
             Make = make;
             Model = model;
         }
+
+        public override string Print()
+        {
+            return $"The Car of {base.Print()}, is the make {Make} and is of model {Model}";
+        }
     }
 }

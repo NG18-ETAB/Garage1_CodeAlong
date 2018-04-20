@@ -46,7 +46,7 @@ namespace Garage1_CodeAlong_180419
                 }
                 if (output != null)
                 {
-                    if (i < count)
+                    if (i - 1 < count)
                     {
                         internalCollection[i] = internalCollection[i + 1];
                     }

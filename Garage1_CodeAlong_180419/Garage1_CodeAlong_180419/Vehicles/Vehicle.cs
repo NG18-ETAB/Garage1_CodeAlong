@@ -14,5 +14,10 @@
             Color = color;
             FuelType = fuelType;
         }
+
+        public virtual string Print()
+        {
+            return $"registration number {RegNr}, {NrOfWheels} wheels, is of color {Color}, runs on {FuelType}";
+        }
     }
 }

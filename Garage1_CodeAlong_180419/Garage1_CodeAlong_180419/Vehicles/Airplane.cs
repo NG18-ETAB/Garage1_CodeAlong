@@ -10,5 +10,10 @@
             WingSpan = wingSpan;
             Model = model;
         }
+
+        public override string Print()
+        {
+            return $"The Airplane of {base.Print()}, with wingspan of {WingSpan} and is of model {Model}";
+        }
     }
 }
