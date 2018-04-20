@@ -22,6 +22,12 @@ namespace Garage1_CodeAlong_180419.Vehicles
             Color = color;
             FuelType = fuelType;
 
+        
+
+        }
+        public virtual string Print()
+        {
+            return "Registration number:\t" + RegNr + "\nNumber of wheels:\t" + NrOfWheels +"\nColor:\t\t\t"+ Color +"\nFuelType:\t\t"+ FuelType;
         }
     }
 }

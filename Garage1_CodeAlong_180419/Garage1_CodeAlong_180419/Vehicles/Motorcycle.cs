@@ -18,5 +18,11 @@ namespace Garage1_CodeAlong_180419.Vehicles
             IsTrike = isTrike;
 
         }
+
+
+        public override string Print()
+        {
+            return "Motorcycle\n  " + base.Print() + "\nCylinderCapacity:\t\t\t" + CylinderCapacity + "\nIsTrike:\t\t\t" + IsTrike;
+        }
     }
 }
