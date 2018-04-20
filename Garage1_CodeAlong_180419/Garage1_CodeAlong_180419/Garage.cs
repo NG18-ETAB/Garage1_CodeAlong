@@ -34,7 +34,7 @@ namespace Garage1_CodeAlong_180419
         {
             T output = null; // array output. a vecicle whatever! T Generic // initiate the output.  and at the end return output. 
             int slotToRemove = -1;              // 
-            for (int i = 0; i < _count; i++) // we start at zero to the current count. We count trou it once serching for reg number..   // Null values have to be at the end, in list,? arrays? 
+            for (int i = 0; i < _count; i++) // we start at zero to the current count. We count trou it once serching for reg number..   // Null values have to be at the end, in list,? arrays? Entier collection until count, next slot from the one we used
             {
                 if (internalCollection[i].RegNr == regNr)
                 {
@@ -43,7 +43,7 @@ namespace Garage1_CodeAlong_180419
                     break;                                  // snap us put of the forlope  // The array contains pointer to the vechile 
                 }
             }
-            if (slotToRemove < 0)            // if ther is no slot to remove return ull.
+            if (slotToRemove < 0)            // if ther is no slot to remove return null.
             {
                 return null;
             }
@@ -55,7 +55,7 @@ namespace Garage1_CodeAlong_180419
                 }
                 if (i + 1 != _capacity) 
                 {
-                    internalCollection[i] = internalCollection[i + 1];          // Moving up the next value, loop again and againg until you hit null
+                    internalCollection[i] = internalCollection[i + 1];          // Moving up the next value, loop again and againg until you hit null . making sure the null value is last.
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace Garage1_CodeAlong_180419
         }
 
 
-        public IEnumerator<T> GetEnumerator() // Implement interface. 
+        public IEnumerator<T> GetEnumerator() // Implement interface. Don have to worry about crah pga null value?
         {
             for (int i = 0; i < _count; i++)   
             {

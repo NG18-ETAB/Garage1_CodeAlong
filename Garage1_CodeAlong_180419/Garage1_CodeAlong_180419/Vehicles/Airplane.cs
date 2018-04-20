@@ -16,6 +16,11 @@ namespace Garage1_CodeAlong_180419.Vehicles
             WingSpan = wingSpan;
                 Model = model;
         }
-
+        public override string Print()
+        {
+            return "The Airplane\n" + base.Print() +
+                "\nWingspan:\t" + WingSpan +
+                "\nModel:\t\t\t" + Model;
+        }
     }
 }
