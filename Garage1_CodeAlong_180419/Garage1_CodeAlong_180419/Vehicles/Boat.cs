@@ -17,5 +17,9 @@ namespace Garage1_CodeAlong_180419.Vehicles
             LenghtInFeet = lenghtInFeet;
             IsSailBoat = isSailBoat;
         }
+        public override string Print()
+        {
+            return "Boat\n" + base.Print() + "\nLength in feet:\t" + LenghtInFeet + "\nIs it a sail boat:\t" + IsSailBoat;
+        }
     }
 }

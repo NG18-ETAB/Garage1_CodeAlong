@@ -27,11 +27,12 @@ namespace Garage1_CodeAlong_180419
         public void Park(T vehicle, out string message)
         {
             message = "Sorry the garage is full";
-            if (_count < _capacity)
+           if (_count < _capacity)
             {
                 internalCollection[_count++] = vehicle;
                 message = "The vehicle has been parked";
             }
+          
         }
 
         public T UnPark(string regNr)
