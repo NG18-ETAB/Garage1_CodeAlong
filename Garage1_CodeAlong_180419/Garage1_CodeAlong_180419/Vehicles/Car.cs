@@ -15,6 +15,10 @@ namespace Garage1_CodeAlong_180419.Vehicles
             Make = make;
             Model = model;
         }
+        public override string Print()
+        {
+            return "Car\n" + base.Print()+ "\nMake:\t\t\t" + Make +" \nModel:\t\t\t" + Model;
+        }
 
     }
 }

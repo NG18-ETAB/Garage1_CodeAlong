@@ -16,7 +16,11 @@ namespace Garage1_CodeAlong_180419.Vehicles
 
         {
             IsDoubleDecker = isDoubleDecker;
-            NrOfWheels = nrOfWheels;
+            NrOfWheels = nrOfWheels; //suppose to be number of seats not number of Wheels
+        }
+        public override string Print()
+        {
+            return "Bus\n" + base.Print() + "\nIt is a Double Decker:\t" + IsDoubleDecker + " \nNumber of Wheels :\t\t\t" + NrOfWheels;
         }
 
 

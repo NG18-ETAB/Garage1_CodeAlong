@@ -36,9 +36,13 @@ namespace Garage1_CodeAlong_180419
                     case "1":
                         ParkVehicle();
                             break;
-                    case "2": break;
+                    case "2":
+                        UnparkVehicle();
+                            break;
                     case "3": break;
-                    case "4": break;
+                    case "4":
+                        ListParkedTypes();
+                            break;
                     case "5": break;
                     case "0":
                         quitProgram = true;
@@ -46,6 +50,73 @@ namespace Garage1_CodeAlong_180419
                     default:break;
                 }
             } while (!quitProgram);
+        }
+
+        public void UnparkVehicle()
+        {
+            bool finishedUnparking = false;
+            Vehicle unparkedVehicle;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Unparking Vehicle \n");
+                Console.Write("Registration Number of Unparking Vehicle(Leav blank to exit):\t");
+                string input = Console.ReadLine();
+                if(input=="")
+                {
+                    Console.WriteLine("\nAre you Sure you want to return to main maenu ");
+                    Console.Write("Registration Number of Unparking Vehicle(Leav blank to exit):\t");
+                     input = Console.ReadLine();
+                    if(input == "")
+                    {
+                        break;
+                    }
+
+                }
+
+                unparkedVehicle = _garage.UnPark(input);
+                if(unparkedVehicle == null)
+                {
+                    Console.WriteLine("\n No Vehicle with the registration number of "+ input + "was found.");
+                    Console.WriteLine("Please Try Again");
+                }
+                else
+                {
+                    Console.WriteLine(unparkedVehicle.Print());
+                   
+                }
+                Console.Read();
+
+            } while (!finishedUnparking);
+        }
+
+        public void ListParkedVehicles()
+        {
+            Console.Clear();
+            foreach (Vehicle v in _garage)
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine(v.Print());
+                 
+            }
+            Console.WriteLine("-------------------------------------------");
+            Console.ReadLine();
+        }
+
+        public void ListParkedTypes()
+        {
+            Console.Clear();
+            Console.WriteLine("Currently there are :");
+            if (_garage.Count() == 0)
+            {
+                Console.WriteLine("Nothing in the Garage");
+            }
+            foreach (var v in _garage.GroupBy(x => x.GetType().Name))
+            {
+                Console.WriteLine(v.Count() + " " + v.Key);
+                
+            }
+            Console.ReadLine();
         }
 
         public void GenerateGarage()
@@ -87,6 +158,7 @@ namespace Garage1_CodeAlong_180419
             }
             while (incorrectInput);  
         }
+
         public void ParkVehicle()
         {
             bool finishedParking = false, incorrectInput = true;
@@ -107,9 +179,8 @@ namespace Garage1_CodeAlong_180419
                 switch (input)
                 {
                     case"1":
-                        Console.Clear();
-                        Console.WriteLine("Park a new Car:\n");
-                        baseVehicle = creatBaseVehicle();
+                        
+                        baseVehicle = creatBaseVehicle("Car");
                         Console.Write("\nMake\t");
                         string make = Console.ReadLine();
                         Console.Write("\nModel:\t");
@@ -117,28 +188,95 @@ namespace Garage1_CodeAlong_180419
                         _garage.Park(new Car(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType, make, model), out message);
                         Console.WriteLine(message);
                             break;
-                    case "2":
-                    case "3":
-                        Console.Clear();
-                        Console.WriteLine("Park a new Airplane:\n");
-                        baseVehicle = creatBaseVehicle();
 
-                        int wingSpan;
+
+                    case "2":
+                            //Console.Clear();
+                            //Console.WriteLine("Park a new Bus:\n");
+                            baseVehicle = creatBaseVehicle("Bus");
+                            bool isDoubleDecker;
+                        do
+                        {
+                            Console.Write("\n:Is it double decker (true/false):\t");
+                            incorrectInput = !bool.TryParse(Console.ReadLine(), out isDoubleDecker);
+                        } while (incorrectInput);
+                        uint nrOfSeats;
+                        do
+                        {
+                            Console.Write("\nNumber of seats:\t");
+                            incorrectInput = !uint.TryParse(Console.ReadLine(),out nrOfSeats);
+                        } while (incorrectInput);
+                        _garage.Park(new Bus(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType,isDoubleDecker, nrOfSeats), out message);
+                        break;
+
+
+                    case "3":
+                        //Console.Clear();
+                        //Console.WriteLine("Park a new Airplane:\n");
+                        baseVehicle = creatBaseVehicle("Airplane");
+
+                        int wingSpan=0;
                         do
                         {
                             Console.Write("\nWingspan:\t");
                             incorrectInput = !int.TryParse(Console.ReadLine(), out wingSpan);
                         } while (incorrectInput);
-                        Console.Write("\nMake\t");
-                         make = Console.ReadLine();
+                   
                         Console.WriteLine("\nModel:\t");
                         model = Console.ReadLine();
 
-                        _garage.Park(new Car(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType, make, model), out message);
+                        _garage.Park(new Airplane(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType,wingSpan ,  model), out message);
                         Console.WriteLine(message);
                         break;
-                    case "4":break;
-                    case "5":break;
+
+
+                    case "4":
+                        //Console.Clear();
+                        //Console.WriteLine("Park a new Boat:\n");
+                        baseVehicle = creatBaseVehicle("Boat");
+                        uint lengthInFeet;
+                            do
+                        {
+                            Console.Write("\nLength in Feet:");
+                            incorrectInput = !uint.TryParse(Console.ReadLine(), out lengthInFeet);
+
+                        } while (incorrectInput);
+                        bool isSailboat;
+                        do
+                        {
+                            Console.Write("\nIs a Sail boat");
+                            incorrectInput = !bool.TryParse(Console.ReadLine(), out isSailboat);
+                        } while (incorrectInput);
+                        _garage.Park(new Boat(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType,lengthInFeet, isSailboat), out message);
+                        Console.WriteLine(message);
+
+                        break;
+
+
+                    case "5":
+                        //Console.Clear();
+                        //Console.WriteLine("Park new Motorcycle");
+                        baseVehicle = creatBaseVehicle("Motorcycle");
+                        int cC;
+                            
+                            do
+                        {
+                            Console.Write("\nWhat is the CC:\t");
+                            incorrectInput = !int.TryParse(Console.ReadLine(), out cC);
+
+                        } while (incorrectInput);
+                        bool isTrike;
+                        do
+                        {
+                            Console.WriteLine("\nIs it a tricycle:\t");
+                            incorrectInput = !bool.TryParse(Console.ReadLine(), out isTrike);
+                        } while (incorrectInput);
+                        _garage.Park(new Motorcycle(baseVehicle.RegNr, baseVehicle.NrOfWheels, baseVehicle.Color, baseVehicle.FuelType, cC, isTrike), out message);
+                        Console.WriteLine(message);
+                        break;
+
+
+
                     case "0":
                         
                         finishedParking = true;
@@ -153,8 +291,14 @@ namespace Garage1_CodeAlong_180419
 
         }
 
-        public Vehicle creatBaseVehicle()
+
+
+
+
+        public Vehicle creatBaseVehicle(string vehicleType)
         {
+            Console.Clear();
+            Console.WriteLine("Park a new "+ vehicleType+ ":\n");
             bool incorrectInput = true;
             Console.Write("Registraion Number:\t");
             string regNr = Console.ReadLine();
