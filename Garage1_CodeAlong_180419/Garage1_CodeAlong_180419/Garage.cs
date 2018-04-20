@@ -27,8 +27,8 @@ namespace Garage1_CodeAlong_180419
 
         public void Park(T vehicle, out string message)
         {
-            message = "Unfortunately the garage is currently full";
-            if (_count < _capacity)
+            message = "Sadly there is no parking space left";
+            if (_count <_capacity)
             {
                 message = "The vehicle has been parked";
                 internalCollection[_count++] = vehicle;
@@ -71,7 +71,7 @@ namespace Garage1_CodeAlong_180419
             }
             
             
-        
+       
 
         public IEnumerator<T> GetEnumerator()
         {
